@@ -2,9 +2,6 @@ import pandas as pd
 
 df = pd.read_excel('iMDb (dataset).xlsx')
 
-df.head()
-
-
 countries_split = df.copy()
 countries_split['Production Countries'] = countries_split['Production Countries'].str.split(', ')
 countries_split = countries_split.explode('Production Countries')
@@ -17,7 +14,6 @@ countries = (countries_split.groupby(by='Production Countries')
                     .reset_index()
                     .rename(columns={'Title':'Number of Films','Budget':'Total Budget',"Production Countries":"Production Country"})
 )
-countries.head(10)
 
 
 import plotly.express as px
